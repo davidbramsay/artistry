@@ -80,11 +80,10 @@ The other options are musicbrainz acoustID or gracenote's service (paid).
 Hashing in blockchain?
 
 
-```
 # Shazam
-
 [Here's the white paper](https://www.ee.columbia.edu/~dpwe/papers/Wang03-shazam.pd://www.ee.columbia.edu/~dpwe/papers/Wang03-shazam.pdf)
 
+```
 Shazam works by taking constellations on the spectrogram (chosen based on
 energy in a local region with some density constraint), then 'anchor points'
 are chosen (middle of the spectrum, density constraint) and a 'target region'
