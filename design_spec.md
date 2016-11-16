@@ -8,6 +8,8 @@ Artistry should be 100% open-source, decentralized, and scalable.
 (0) framework
 daemon service or chrome extension? target market?
 
+single point of failure?
+
 (1) audio identification
 audio fingerprinting or metadata extraction?  what is
 the canonical source for ids - musicbrainz, gracenote, spotify, or our own blockchain
@@ -22,6 +24,7 @@ of having to store a lookup of distributed servers which may come on/off line.
 
 
 (3) artist identity verification
+
 1 blockchain where anyone can push an artist id and an email string, store IP
 or location of person that pushes?
 
@@ -64,6 +67,45 @@ primarily through their browser.  I'm not sure most people do (most people I
 see using spotify have downloaded the app and don't stream it through a browser).
 
 
+I wonder about the distributed nature of this-- is it to eliminate a single
+point of failure?  That could be hard.  I see two ways to go:
+
+#1
+(1)Chrome extension, using scrobbler scripts to pull metadata
+(2)need to hit some central API *or* create our own metadata-to-songid
+and metadata/songid-to-artistid distributed service>
+(3)push songids to blockchain
+
+more ubiquitous and less overhead to install, BUT how many people primarily use
+browser for listening?  how many people that are interested in indie artists
+and subverting the music industry listen to music in this way?  How seriously
+do these people take chrome extensions?
+
+#2
+(1)daemon in background, write our own hash-based lookup similar to Shazam
+(2)need to hit our distributed hash-to-songid/artistid service, requires a few
+hundred gigs per hash table (real servers, potentially).
+(3)push songids to blockchain
+
+This seems more in line with the community I think will want to adopt this--
+you can use any music streaming service and protect your privacy
+(open/controled data crowd).  It's more ubiquitous, the tech is scalable and
+future proof unlike metadata extraction.  It also decouples completely the
+content from the metadata, and the content delivery service from the payment.
+I could see the pirate/torrent community embracing something like this--
+politically it ticks the important boxes, *and* it looks to complete their
+ecosystem in a certain way.  They have an anonymous and distributed way to
+distribute content, they need an anonymous and distributed way to support the
+artists and creators that create/distribute that content.
+
+I'm not sure how to structure distributed fast lookup without some central
+reliable reference address table that 'always works' (like DNS).  Update shipping software to
+have a list of most recent lookup nodes and cache locally?  Design each new one
+to ping and share addresses among themselves so we have an up-to-date list of
+fast hash lookups?
+
+
+
 ## 1. Identify the Audio
 
 If we do a chrome tab, we can scrape the audio in a site specific way using the
@@ -80,9 +122,8 @@ The other options are musicbrainz acoustID or gracenote's service (paid).
 Hashing in blockchain?
 
 
-# Shazam
+### Shazam
 [Here's the white paper](https://www.ee.columbia.edu/~dpwe/papers/Wang03-shazam.pdf)
-
 ```
 Shazam works by taking constellations on the spectrogram (chosen based on
 energy in a local region with some density constraint), then 'anchor points'
@@ -111,7 +152,10 @@ one second resolution at 7 bits can encode first 2 min of every song, for
 25 bits = 33,000,000 songs
 
 ```
-
+Shazam (I assume) has legal protection on this for at least another decade or
+so, but we could see how much we need to change in order to use it.  We can be
+a little less robust since we aren't operating under the same tight constraints
+as Shazam. (We're getting a direct copy of the audio stream).
 
 
 
