@@ -81,7 +81,7 @@ Hashing in blockchain?
 
 
 # Shazam
-[Here's the white paper](https://www.ee.columbia.edu/~dpwe/papers/Wang03-shazam.pd://www.ee.columbia.edu/~dpwe/papers/Wang03-shazam.pdf)
+[Here's the white paper](https://www.ee.columbia.edu/~dpwe/papers/Wang03-shazam.pdf)
 
 ```
 Shazam works by taking constellations on the spectrogram (chosen based on
